@@ -35,6 +35,22 @@
   </distributionManagement>
 
   <build>
+	<reporting>
+    <plugins>
+      <plugin>
+        <groupId>org.jacoco</groupId>
+        <artifactId>jacoco-maven-plugin</artifactId>
+        <reportSets>
+          <reportSet>
+            <reports>
+              <!-- select non-aggregate reports -->
+              <report>report</report>
+            </reports>
+          </reportSet>
+        </reportSets>
+      </plugin>
+    </plugins>
+  </reporting>
     <plugins>
       <plugin>
         <artifactId>maven-compiler-plugin</artifactId>
@@ -86,31 +102,12 @@
             </plugin>
           </reportPlugins>
         </configuration>
-	<plugin>
-    <groupId>org.jacoco</groupId>
-    <artifactId>jacoco-maven-plugin</artifactId>
-    <version>${jacoco.version}</version>
-    <configuration>
-	<destFile>${basedir}/target/coverage-reports/jacoco-unit.exec</destFile>
-	<dataFile>${basedir}/target/coverage-reports/jacoco-unit.exec</dataFile>
-	</configuration>
-    <executions>
-        <execution>
-            <id>jacoco-initialize</id>
-            <goals>
-                <goal>prepare-agent</goal>
-            </goals>
-        </execution>
-        <execution>
-            <id>jacoco-site</id>
-            <phase>package</phase>
-            <goals>
-                <goal>report</goal>
-            </goals>
-        </execution>
-    </executions>
-   </plugin>
-      </plugin>
+		</plugin>
+		<plugin>
+		  <groupId>org.jacoco</groupId>
+		  <artifactId>jacoco-maven-plugin</artifactId>
+		  <version>0.8.12-SNAPSHOT</version>
+		</plugin>
     </plugins>
 
     <pluginManagement>
@@ -250,5 +247,5 @@
   <prerequisites>
     <maven>3.0.3</maven>
   </prerequisites>
-
+  		
 </project>
